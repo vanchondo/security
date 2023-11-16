@@ -5,13 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f289e3c6-5e3b-4ccb-b6b2-0fa3d9a769a0" name="Changes" comment="Init project">
-      <change afterPath="$PROJECT_DIR$/.idea/modules/lib/security.lib.main.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/lib/securityLibrary.lib.main.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/lib/securityLibrary.lib.test.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/src/main/java/com/vanchondo/security/JwtFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/src/main/java/com/vanchondo/security/configs/properties/LoginConfiguration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/src/main/java/com/vanchondo/security/configs/properties/UrlResource.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/src/main/java/com/vanchondo/security/dto/CurrentUserDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/src/main/java/com/vanchondo/security/dto/TokenDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/src/main/java/com/vanchondo/security/dto/UserInfoForTokenDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/src/main/java/com/vanchondo/security/exception/AuthenticationException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/src/main/java/com/vanchondo/security/mapper/CurrentUserDTOMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/src/main/java/com/vanchondo/security/service/SecurityService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/src/main/java/com/vanchondo/security/util/Constants.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/src/main/java/com/vanchondo/security/util/SecurityUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/lib/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/main/java/com/vanchondo/Library.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,9 +61,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 0
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
   <component name="ProjectId" id="2YGiSUlODiB43RKOxYbyhUw4Uv1" />
   <component name="ProjectViewState">
     <option name="autoscrollFromSource" value="true" />
@@ -69,7 +79,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Users/eduar/repo/securityLibrary",
+    "last_opened_file_path": "C:/Users/eduar/repo/security",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -77,7 +87,29 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Gradle.securityLibrary [build]">
+    <configuration name="security [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="clean" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
     <configuration name="securityLibrary [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -103,6 +135,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Gradle.securityLibrary [build]" />
+        <item itemvalue="Gradle.security [clean]" />
       </list>
     </recent_temporary>
   </component>
@@ -115,6 +148,7 @@
       <option name="presentableId" value="Default" />
       <updated>1700158316559</updated>
       <workItem from="1700158317586" duration="829000" />
+      <workItem from="1700159231554" duration="2002000" />
     </task>
     <task id="LOCAL-00001" summary="Init project">
       <option name="closed" value="true" />

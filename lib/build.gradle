@@ -10,6 +10,8 @@ version '1.0-SNAPSHOT'
 
 def lombok_version = '1.18.+'
 def springBoot_version = '3.1.+'
+def jsonwebtoken_version = '0.11.+'
+def apache_commons_version = "3.12.+"
 def jacoco_version = '0.8.9'
 
 repositories {
@@ -20,10 +22,15 @@ repositories {
 }
 
 dependencies {
-
+    implementation "org.springframework.boot:spring-boot-starter-webflux:${springBoot_version}"
     compileOnly "org.projectlombok:lombok:${lombok_version}"
     annotationProcessor "org.projectlombok:lombok:${lombok_version}"
 
+    implementation "io.jsonwebtoken:jjwt-api:${jsonwebtoken_version}"
+    implementation "io.jsonwebtoken:jjwt-impl:${jsonwebtoken_version}"
+    implementation "io.jsonwebtoken:jjwt-gson:${jsonwebtoken_version}"
+
+    implementation "org.apache.commons:commons-lang3:${apache_commons_version}"
 
     // Test libraries
     testImplementation ("org.springframework.boot:spring-boot-starter-test:${springBoot_version}") {
