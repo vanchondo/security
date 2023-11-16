@@ -16,7 +16,7 @@ pipeline {
             steps {
                 discordSend description: "Build started", footer: "", enableArtifactsList: false, link: env.BUILD_URL, result: currentBuild.currentResult, title: JOB_NAME, webhookURL: "${WEBHOOK_URL}"
                 sh 'chmod +x gradlew'
-                sh './gradlew clean build -PbuildNumber=${params.BUILD_NUMBER}'
+                sh './gradlew clean build -PbuildNumber=${parameters.BUILD_NUMBER}'
                 sh './gradlew jacocoTestCoverageVerification'
             }
         }
