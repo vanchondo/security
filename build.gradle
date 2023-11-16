@@ -9,7 +9,7 @@ plugins {
 def jenkinsBuildNumber = project.hasProperty('buildNumber') ? project.buildNumber : 'SNAPSHOT'
 
 group 'com.vanchondo'
-version "1.0.${jenkinsBuildNumber}"
+version "1.0.0-${jenkinsBuildNumber}"
 
 def lombok_version = '1.18.+'
 def springBoot_version = '3.1.+'
