@@ -13,7 +13,8 @@ pipeline {
             steps {
                 discordSend description: "Build ${env.BUILD_ID} started", footer: "", enableArtifactsList: false, link: env.BUILD_URL, result: currentBuild.currentResult, title: JOB_NAME, webhookURL: "${WEBHOOK_URL}"
                 sh 'chmod +x gradlew'
-                sh './gradlew clean build'
+                sh './gradlew clean'
+                sh './gradlew build -PbuildNumber=${env.BUILD_NUMBER}'
                 sh './gradlew jacocoTestCoverageVerification'
             }
         }
@@ -27,7 +28,7 @@ pipeline {
     }
     post {
         always {
-            discordSend description: "Build finished ${env.BUILD_NUMBER}", footer: "", enableArtifactsList: false, link: env.BUILD_URL, result: currentBuild.currentResult, title: JOB_NAME, webhookURL: "${WEBHOOK_URL}"
+            discordSend description: "Build ${env.BUILD_ID} finished", footer: "", enableArtifactsList: false, link: env.BUILD_URL, result: currentBuild.currentResult, title: JOB_NAME, webhookURL: "${WEBHOOK_URL}"
         }
     }
 }
