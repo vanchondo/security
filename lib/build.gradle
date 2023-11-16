@@ -1,0 +1,90 @@
+plugins {
+    // Apply the java-library plugin for API and implementation separation.
+    id 'java-library'
+    id 'jacoco'
+    id 'maven-publish'
+}
+
+group 'com.vanchondo'
+version '1.0-SNAPSHOT'
+
+def lombok_version = '1.18.+'
+def springBoot_version = '3.1.+'
+def jacoco_version = '0.8.9'
+
+repositories {
+    mavenCentral()
+    maven {
+        url = uri('https://nexus.victoranchondo.com/repository/artifactory')
+    }
+}
+
+dependencies {
+
+    compileOnly "org.projectlombok:lombok:${lombok_version}"
+    annotationProcessor "org.projectlombok:lombok:${lombok_version}"
+
+
+    // Test libraries
+    testImplementation ("org.springframework.boot:spring-boot-starter-test:${springBoot_version}") {
+        exclude group:"org.junit.vintage", module:"junit-vintage-engine"
+        exclude group:"junit", module:"junit:"
+    }
+    testImplementation("org.springframework.security:spring-security-test")
+    testImplementation "io.projectreactor:reactor-test:${springBoot_version}"
+    testCompileOnly "org.projectlombok:lombok:${lombok_version}"
+    testAnnotationProcessor "org.projectlombok:lombok:${lombok_version}"
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifactId = 'sso-svc'
+            from components.java
+        }
+    }
+    repositories {
+        maven {
+            url = uri('https://nexus.victoranchondo.com/repository/artifactory')
+            credentials {
+                username = project.hasProperty('nexusUsername') ? project.nexusUsername : ""
+                password = project.hasProperty('nexusPassword') ? project.nexusPassword : ""
+            }
+        }
+    }
+}
+
+def jacocoExcludeList = [
+        "**/configs/**",
+        "**/dtos/**",
+        "**/entities/**"
+]
+
+jacoco {
+    toolVersion = "${jacoco_version}"
+}
+
+jacocoTestReport {
+    reports {
+        xml.required = false
+        csv.required = false
+        html.outputLocation = layout.buildDirectory.dir('reports/jacoco')
+    }
+
+    afterEvaluate {
+        classDirectories.setFrom(files(classDirectories.files.collect {
+            fileTree(dir: it, exclude: jacocoExcludeList)
+        }))
+    }
+}
+
+test {
+    useJUnitPlatform()
+    finalizedBy jacocoTestReport
+}
+
+// Apply a specific Java toolchain to ease working on different environments.
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
