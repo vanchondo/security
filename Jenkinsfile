@@ -3,9 +3,6 @@ pipeline {
     tools {
         jdk 'Java17-Temurin'
     }
-    parameters {
-        string(name: 'BUILD_NUMBER', defaultValue: 'SNAPSHOT', description: 'Specify the build number')
-    }
     agent any
     environment {
         app_name = 'security'
@@ -16,7 +13,7 @@ pipeline {
             steps {
                 discordSend description: "Build started", footer: "", enableArtifactsList: false, link: env.BUILD_URL, result: currentBuild.currentResult, title: JOB_NAME, webhookURL: "${WEBHOOK_URL}"
                 sh 'chmod +x gradlew'
-                sh './gradlew clean build -PbuildNumber=${BUILD_NUMBER}'
+                sh './gradlew clean build -PbuildNumber=${currentBuild.number}'
                 sh './gradlew jacocoTestCoverageVerification'
             }
         }
