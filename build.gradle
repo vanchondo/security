@@ -14,10 +14,12 @@ def jsonwebtoken_version = '0.11.+'
 def apache_commons_version = "3.12.+"
 def jacoco_version = '0.8.9'
 
+def nexus_repo = "https://nexus.victoranchondo.com/repository/artifactory"
+
 repositories {
     mavenCentral()
     maven {
-        url = uri('https://nexus.victoranchondo.com/repository/artifactory')
+        url = uri("${nexus_repo}")
     }
 }
 
@@ -58,7 +60,7 @@ publishing {
     }
     repositories {
         maven {
-            url = uri('https://nexus.victoranchondo.com/repository/artifactory')
+            url = uri("${nexus_repo}")
             credentials {
                 username = project.hasProperty('nexusUsername') ? project.nexusUsername : ""
                 password = project.hasProperty('nexusPassword') ? project.nexusPassword : ""
