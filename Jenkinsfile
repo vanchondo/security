@@ -12,6 +12,7 @@ pipeline {
         stage('Gradle Build') {
             steps {
                 discordSend description: "Build started", footer: "", enableArtifactsList: false, link: env.BUILD_URL, result: currentBuild.currentResult, title: JOB_NAME, webhookURL: "${WEBHOOK_URL}"
+                sh 'chmod +x gradlew'
                 sh './gradlew clean build jacocoTestCoverageVerification'
             }
         }
