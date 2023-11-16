@@ -5,8 +5,11 @@ plugins {
     id 'maven-publish'
 }
 
+// Define the version variable and use it as the project version
+def jenkinsBuildNumber = project.hasProperty('buildNumber') ? project.buildNumber : 'SNAPSHOT'
+
 group 'com.vanchondo'
-version '1.0-SNAPSHOT'
+version "1.0.${jenkinsBuildNumber}"
 
 def lombok_version = '1.18.+'
 def springBoot_version = '3.1.+'
