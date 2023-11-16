@@ -13,15 +13,13 @@ pipeline {
             steps {
                 discordSend description: "Build ${env.BUILD_ID} started", footer: "", enableArtifactsList: false, link: env.BUILD_URL, result: currentBuild.currentResult, title: JOB_NAME, webhookURL: "${WEBHOOK_URL}"
                 sh 'chmod +x gradlew'
-                sh './gradlew clean'
-                sh "./gradlew build -PbuildNumber=${env.BUILD_NUMBER}"
-                sh './gradlew jacocoTestCoverageVerification'
+                sh "./gradlew clean build jacocoTestCoverageVerification -PbuildNumber=${env.BUILD_NUMBER}"
             }
         }
         stage('Nexus Deploy') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'nexus-credentials', usernameVariable: 'NEXUS_USERNAME', passwordVariable: 'NEXUS_PASSWORD')]) {
-                    sh './gradlew publish -PnexusUsername=${NEXUS_USERNAME} -PnexusPassword=${NEXUS_PASSWORD}'
+                    sh './gradlew publish -PbuildNumber=${env.BUILD_NUMBER} -PnexusUsername=${NEXUS_USERNAME} -PnexusPassword=${NEXUS_PASSWORD}'
                 }
             }
         }

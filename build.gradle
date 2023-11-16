@@ -6,10 +6,10 @@ plugins {
 }
 
 // Define the version variable and use it as the project version
-def jenkinsBuildNumber = project.hasProperty('buildNumber') ? project.buildNumber : 'SNAPSHOT'
+def jenkinsBuildNumber = project.hasProperty('buildNumber') ? project.buildNumber : '0-SNAPSHOTT'
 
 group 'com.vanchondo'
-version "1.0.0-${jenkinsBuildNumber}"
+version "1.0.${jenkinsBuildNumber}"
 
 def lombok_version = '1.18.+'
 def springBoot_version = '3.1.+'
