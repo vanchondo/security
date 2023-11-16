@@ -43,6 +43,12 @@ dependencies {
     testAnnotationProcessor "org.projectlombok:lombok:${lombok_version}"
 }
 
+// Apply a specific Java toolchain to ease working on different environments.
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
 publishing {
     publications {
         mavenJava(MavenPublication) {
@@ -90,8 +96,17 @@ test {
     finalizedBy jacocoTestReport
 }
 
-// Apply a specific Java toolchain to ease working on different environments.
-java {
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
+jacocoTestCoverageVerification {
+    afterEvaluate {
+        classDirectories.setFrom(files(classDirectories.files.collect {
+            fileTree(dir: it, exclude: jacocoExcludeList)
+        }))
+    }
+    violationRules {
+        rule {
+            limit {
+                minimum = 0.80
+            }
+        }
+    }
 }
