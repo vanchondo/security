@@ -1,4 +1,4 @@
-package com.vanchondo.security;
+package com.vanchondo.security.filter;
 
 import com.vanchondo.security.configs.properties.LoginConfiguration;
 import com.vanchondo.security.dto.CurrentUserDTO;
