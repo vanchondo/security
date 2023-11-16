@@ -52,7 +52,7 @@ java {
 publishing {
     publications {
         mavenJava(MavenPublication) {
-            artifactId = 'sso-svc'
+            artifactId = 'security-library'
             from components.java
         }
     }
