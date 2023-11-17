@@ -7,7 +7,7 @@ pipeline {
     stages {
         stage('Gradle Build') {
             steps {
-                discordSend description: "${DISCORD_START_MESSAGE}", footer: "", enableArtifactsList: false, link: env.BUILD_URL, result: currentBuild.currentResult, title: JOB_NAME, webhookURL: "${WEBHOOK_URL}"
+                discordSend description: "${DISCORD_START_MESSAGE}", footer: "", enableArtifactsList: true, link: env.BUILD_URL, result: currentBuild.currentResult, title: JOB_NAME, webhookURL: "${WEBHOOK_URL}"
                 sh 'chmod +x gradlew'
                 sh "./gradlew clean build jacocoTestCoverageVerification -PbuildNumber=${env.BUILD_NUMBER}"
             }
@@ -22,10 +22,10 @@ pipeline {
     }
     post {
         success {
-            discordSend description: "${DISCORD_SUCCESS_MESSAGE}", footer: "", enableArtifactsList: false, link: env.BUILD_URL, result: currentBuild.currentResult, title: JOB_NAME, webhookURL: "${WEBHOOK_URL}"
+            discordSend description: "${DISCORD_SUCCESS_MESSAGE}", footer: "", enableArtifactsList: true, link: env.BUILD_URL, result: currentBuild.currentResult, title: JOB_NAME, webhookURL: "${WEBHOOK_URL}"
         }
         failure {
-            discordSend description: "${DISCORD_FAIL_MESSAGE}", footer: "", enableArtifactsList: false, link: env.BUILD_URL, result: currentBuild.currentResult, title: JOB_NAME, webhookURL: "${WEBHOOK_URL}"
+            discordSend description: "${DISCORD_FAIL_MESSAGE}", footer: "", enableArtifactsList: true, link: env.BUILD_URL, result: currentBuild.currentResult, title: JOB_NAME, webhookURL: "${WEBHOOK_URL}"
         }
     }
 }
