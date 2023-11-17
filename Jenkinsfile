@@ -21,8 +21,11 @@ pipeline {
         }
     }
     post {
-        always {
-            discordSend description: currentBuild.currentResult ? "Build ${env.BUILD_ID} finished successfully" : "Build ${env.BUILD_ID} failed" , footer: "", enableArtifactsList: false, link: env.BUILD_URL, result: currentBuild.currentResult, title: JOB_NAME, webhookURL: "${WEBHOOK_URL}"
+        success {
+            discordSend description: "Build ${env.BUILD_ID} finished successfully", footer: "", enableArtifactsList: false, link: env.BUILD_URL, result: currentBuild.currentResult, title: JOB_NAME, webhookURL: "${WEBHOOK_URL}"
+        }
+        failure {
+            discordSend description: "Build ${env.BUILD_ID} failed" , footer: "", enableArtifactsList: false, link: env.BUILD_URL, result: currentBuild.currentResult, title: JOB_NAME, webhookURL: "${WEBHOOK_URL}"
         }
     }
 }
