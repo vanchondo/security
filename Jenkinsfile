@@ -4,10 +4,6 @@ pipeline {
         jdk 'Java17-Temurin'
     }
     agent any
-    environment {
-        app_name = 'security'
-        version = "0.${BUILD_NUMBER}"
-    }
     stages {
         stage('Gradle Build') {
             steps {
