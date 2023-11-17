@@ -23,7 +23,7 @@ public class SecurityService {
 
   private final LoginConfiguration loginConfiguration;
 
-  private TokenDTO generateToken(UserInfoForTokenDTO userInfo) {
+  public TokenDTO generateToken(UserInfoForTokenDTO userInfo) {
     Calendar cal = Calendar.getInstance();
     cal.setTime(new Date());
     cal.add(Calendar.MINUTE, loginConfiguration.getExpirationToken());
