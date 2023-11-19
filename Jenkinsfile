@@ -1,6 +1,7 @@
 #!groovy
 pipeline {
     tools {
+
         jdk 'Java17-Temurin'
     }
     agent any
