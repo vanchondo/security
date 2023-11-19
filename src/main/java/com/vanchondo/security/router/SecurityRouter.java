@@ -16,7 +16,7 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 public class SecurityRouter {
 
   @Bean
-  public RouterFunction<ServerResponse> loginRoute(SecurityHandler securityHandler) {
+  public RouterFunction<ServerResponse> securityRoute(SecurityHandler securityHandler) {
     return route(GET("/version"), securityHandler::handleVersion);
   }
 }
