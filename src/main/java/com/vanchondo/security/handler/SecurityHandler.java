@@ -1,13 +1,8 @@
 package com.vanchondo.security.handler;
 
-import com.vanchondo.security.dto.CurrentUserDTO;
-import com.vanchondo.security.util.Constants;
 import com.vanchondo.security.util.LogUtil;
-import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.boot.info.BuildProperties;
 import org.springframework.context.ApplicationContext;
-import org.springframework.core.env.Environment;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
