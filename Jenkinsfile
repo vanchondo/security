@@ -19,7 +19,7 @@ pipeline {
         stage('Nexus Deploy') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'nexus-credentials', usernameVariable: 'NEXUS_USERNAME', passwordVariable: 'NEXUS_PASSWORD')]) {
-                    sh "./gradlew publish -Pversion=${version} -PnexusUsername=${NEXUS_USERNAME} -PnexusPassword=${NEXUS_PASSWORD}"
+                    sh './gradlew publish -Pversion=${version} -PnexusUsername=${NEXUS_USERNAME} -PnexusPassword=${NEXUS_PASSWORD}'
                 }
             }
         }
