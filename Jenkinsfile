@@ -12,7 +12,7 @@ pipeline {
             steps {
                 discordSend description: "${DISCORD_START_MESSAGE}", footer: "", enableArtifactsList: false, link: env.BUILD_URL, result: currentBuild.currentResult, title: JOB_NAME, webhookURL: "${WEBHOOK_URL}"
                 sh 'chmod +x gradlew'
-                sh "./gradlew clean build jacocoTestCoverageVerification -Pversion=${env.BUILD_NUMBER}"
+                sh "./gradlew clean build jacocoTestCoverageVerification -Pversion=${version}"
             }
         }
         stage('Nexus Deploy') {
