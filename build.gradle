@@ -111,7 +111,3 @@ jacocoTestCoverageVerification {
         }
     }
 }
-
-springBoot {
-    buildInfo()
-}
