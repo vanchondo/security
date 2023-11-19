@@ -5,6 +5,7 @@ import com.vanchondo.security.dto.CurrentUserDTO;
 import com.vanchondo.security.dto.TokenDTO;
 import com.vanchondo.security.dto.UserInfoForTokenDTO;
 import com.vanchondo.security.util.Constants;
+import com.vanchondo.security.util.SecurityUtils;
 import org.springframework.stereotype.Service;
 
 import java.security.Key;
@@ -39,14 +40,9 @@ public class SecurityService {
       .setIssuedAt(new Date())
       .setExpiration(cal.getTime())
       .signWith(
-        getSigningKey(loginConfiguration.getSecretKey()),
+        SecurityUtils.getSigningKey(loginConfiguration.getSecretKey()),
         SignatureAlgorithm.HS256
       )
       .compact());
-  }
-
-  public static Key getSigningKey(String secretKey) {
-    byte[] keyBytes = Decoders.BASE64.decode(secretKey);
-    return Keys.hmacShaKeyFor(keyBytes);
   }
 }
