@@ -4,12 +4,15 @@ pipeline {
         jdk 'Java17-Temurin'
     }
     agent any
+    environment {
+        version = "1.0-${BRANCH_NAME}.${BUILD_NUMBER}"
+    }
     stages {
         stage('Gradle Build') {
             steps {
                 discordSend description: "${DISCORD_START_MESSAGE}", footer: "", enableArtifactsList: false, link: env.BUILD_URL, result: currentBuild.currentResult, title: JOB_NAME, webhookURL: "${WEBHOOK_URL}"
                 sh 'chmod +x gradlew'
-                sh "./gradlew clean build jacocoTestCoverageVerification -PbuildNumber=${env.BUILD_NUMBER}"
+                sh "./gradlew clean build jacocoTestCoverageVerification -Pversion=${env.BUILD_NUMBER}"
             }
         }
         stage('Nexus Deploy') {
